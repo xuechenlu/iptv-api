@@ -25,6 +25,9 @@
   <a href="https://hub.docker.com/repository/docker/guovern/iptv-api">
     <img src="https://img.shields.io/docker/pulls/guovern/iptv-api?label=Docker%20Pulls" />
   </a>
+  <a href="https://github.com/Guovin/iptv-api/stargazers">
+    <img src="https://img.shields.io/github/stars/guovin/iptv-api?label=Stars" />
+  </a>
   <a href="https://github.com/Guovin/iptv-api/fork">
     <img src="https://img.shields.io/github/forks/guovin/iptv-api?label=Forks" />
   </a>
@@ -69,12 +72,12 @@
 |:------------------------------|:-------:|:------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Custom templates**          |    ✅    | Generate custom channel playlists                                                                                                                           |
 | **Channel aliases**           |    ✅    | Improve channel matching and accuracy, supports regular expressions                                                                                         |
-| **Multi-source aggregation**  |    ✅    | Local sources and subscription sources                                                                                                                      |
-| **Stream relay**              |    ✅    | Improve playback on weak networks, supports direct browser playback                                                                                         |
+| **Multi-source aggregation**  |    ✅    | Local sources and subscription sources (supports setting the User-Agent header)                                                                             |
+| **Stream relay**              |    ✅    | Improve playback on weak networks, supports direct browser playback, and automatic transcoding/adaptation                                                   |
 | **Replay/VOD interfaces**     |    ✅    | Fetching and generating replay/VOD interfaces                                                                                                               |
 | **EPG**                       |    ✅    | Fetch and display channel program guides                                                                                                                    |
 | **Channel logos**             |    ✅    | Custom channel logos, supports local additions or a remote library                                                                                          |
-| **Speed test & validation**   |    ✅    | Obtain latency, bitrate, resolution; filter invalid interfaces; supports real-time output                                                                   |
+| **Speed test & validation**   |    ✅    | Obtain latency, bitrate, resolution, fps; filter invalid interfaces; supports real-time output                                                              |
 | **Advanced preferences**      |    ✅    | Rate, resolution, blacklist/whitelist, location and ISP custom filters                                                                                      |
 | **Results management**        |    ✅    | Categorized storage and access of results, log recording, unmatched channel records, statistical analysis, freeze filtering/unfreeze rollback, data caching |
 | **Scheduled tasks**           |    ✅    | Scheduled or interval updates                                                                                                                               |
@@ -144,6 +147,7 @@
 | nginx_rtmp_port        | Nginx RTMP service port, used for the RTMP service of RTMP push forwarding.                                                                                                                                                                                                                                                                 | 1935                                     |
 | rtmp_idle_timeout      | RTMP channel idle stop-streaming timeout in seconds. When no one watches for longer than this duration, streaming is stopped, helping reduce server resource usage.                                                                                                                                                                         | 300                                      |
 | rtmp_max_streams       | Maximum number of concurrent RTMP push streams. Controls how many channels can be pushed at the same time. Larger values increase server load; tune to optimize resource usage.                                                                                                                                                             | 10                                       |
+| rtmp_transcode_mode    | Push streaming transcoding mode. `copy` means no transcoding — output is copied to save CPU consumption as much as possible. `auto` means adaptive transcoding to match players; this increases CPU usage but can improve compatibility.                                                                                                    | copy                                     |
 
 ## Quick Start
 
@@ -318,6 +322,8 @@ generated result files directly on the host. Append the following options to the
 | /hls/ipv6/txt      | hls ipv6 txt streaming endpoint      |
 | /hls/ipv6/m3u      | hls ipv6 m3u streaming endpoint      |
 | /stat              | Streaming status statistics endpoint |
+
+[How to use streaming?](./docs/tutorial_en.md#Streaming-Usage-Tutorial)
 
 ## Changelog
 
